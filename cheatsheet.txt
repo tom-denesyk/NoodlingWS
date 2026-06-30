@@ -1,0 +1,7 @@
+python -m pdb noodling.py
+
+pyinstaller --onefile client.py --onefile
+pyinstaller --onefile server.py --onefile
+
+
+pygbag NoodlingCopy

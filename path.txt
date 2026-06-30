@@ -1,0 +1,66 @@
+(noodling) C:\Users\tdene\OneDrive\TomStuff\NoodlingWebSocket>path
+0ATH=C:\Users\tdene\OneDrive\noodling\Scripts
+1:\Program Files\Microsoft\jdk-11.0.12.7-hotspot\bin
+2:\Program Files\SlickEdit Pro 26.0.1\win\
+3:\Windows\system32
+4:\Windows
+5:\Windows\System32\Wbem
+6:\Windows\System32\WindowsPowerShell\v1.0\
+7:\Windows\System32\OpenSSH\
+8:\Program Files (x86)\NVIDIA Corporation\PhysX\Common
+9:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR
+10:\Program Files\dotnet\
+11:\Program Files\TortoiseGit\bin
+12:\Program Files\Git\cmd
+13:\ProgramData\chocolatey\bin
+14:\Program Files\Microsoft SQL Server\150\Tools\Binn\
+15:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\
+16:\Program Files\nodejs\
+17:\Program Files (x86)\Yarn\bin\
+18:\Users\tdene\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\Local\pyinstaller\bincache00_py310_64bit\pygame
+19:\Users\tdene\AppData\Local\Programs\Python\Python310\Scripts\
+20:\Users\tdene\AppData\Local\Programs\Python\Python310\
+29:\Users\tdene\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts
+21:\Users\tdene\.cargo\bin
+22:\Users\tdene\AppData\Local\Microsoft\WindowsApps
+23:\Users\tdene\AppData\Local\GitHubDesktop\bin
+24:\Users\tdene\.dotnet\tools
+25:\Users\tdene\AppData\Roaming\npm
+26:\Users\tdene\AppData\Local\Yarn\bin
+27:\Program Files\nodejs
+28:\Users\tdene\AppData\Local\Programs\Microsoft VS Code\bin
+
+================
+C:\Users\tdene\OneDrive\TomStuff\NoodlingCopy>path
+0ATH=C:\Program Files\Microsoft\jdk-11.0.12.7-hotspot\bin
+1:\Program Files\SlickEdit Pro 26.0.1\win\
+2:\Windows\system32
+3:\Windows
+4:\Windows\System32\Wbem
+5:\Windows\System32\WindowsPowerShell\v1.0\
+6:\Windows\System32\OpenSSH\
+7:\Program Files (x86)\NVIDIA Corporation\PhysX\Common
+8:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR
+9:\Program Files\dotnet\
+10:\Program Files\TortoiseGit\bin
+11:\Program Files\Git\cmd
+12:\ProgramData\chocolatey\bin
+13:\Program Files\Microsoft SQL Server\150\Tools\Binn\
+14:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\
+15:\Program Files\nodejs\
+16:\Program Files (x86)\Yarn\bin\
+17:\Users\tdene\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\Local\pyinstaller\bincache00_py310_64bit\pygame
+18:\Users\tdene\AppData\Local\Programs\Python\Python310\Scripts\
+19:\Users\tdene\AppData\Local\Programs\Python\Python310\
+28:\Users\tdene\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts
+20:\Users\tdene\.cargo\bin
+21:\Users\tdene\AppData\Local\Microsoft\WindowsApps
+22:\Users\tdene\AppData\Local\GitHubDesktop\bin
+23:\Users\tdene\.dotnet\tools
+24:\Users\tdene\AppData\Roaming\npm
+25:\Users\tdene\AppData\Local\Yarn\bin
+26:\Program Files\nodejs
+27:\Users\tdene\AppData\Local\Programs\Microsoft VS Code\bin
+29:\Users\tdene\OneDrive\
+30
+
