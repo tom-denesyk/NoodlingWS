@@ -5,10 +5,11 @@ from tiles import draw_tile
 win = GraphWin("Tile Test", 600, 500)
 win.setBackground("white")
 
-# Draw a tile with parameters (r, g, g, b, b)
-# centerColor='r', r1='g', r2='g', r3='b', r4='b'
-print("Drawing tile with parameters: centerColor='r', r1='g', r2='g', r3='b', r4='b'")
-result = draw_tile(win, 'r', 'g', 'g', 'b', 'b')
+# Draw a tile with parameters (r, b, b, g, b)
+# playerColor='r', r1='b', r2='b', r3='g', r4='b'
+# Triangle green, side triangles blue, center red
+print("Drawing tile with parameters: playerColor='r', r1='b', r2='b', r3='g', r4='b'")
+result = draw_tile(win, 'r', 'b', 'b', 'g', 'b')
 if result is not None:
     print(f"Error: {result}")
 else:

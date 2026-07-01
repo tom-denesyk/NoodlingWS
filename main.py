@@ -63,8 +63,8 @@ async def main():
     ]
     
     for config in gif_configs:
-        centerColor, r1, r2, r3, r4 = config
-        result = create_tile_gif(centerColor, r1, r2, r3, r4)
+        playerColor, r1, r2, r3, r4 = config
+        result = create_tile_gif(playerColor, r1, r2, r3, r4)
         if result is not None:
             print(f"Error creating GIF: {result}")
     
