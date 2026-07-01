@@ -199,13 +199,19 @@ def boardInit(sel):
         fgd = []
         fgd.append(RED)
         fgd.append(YELLOW)
-        txt = ['BOTH PLAYERS', 'RED PLAYER', 'YELLOW PLAYER']
+        txt = ['RED PLAYER', 'YELLOW PLAYER', 'BOTH PLAYERS']
         for conIdx in range(0, len(CON)):
             if len(CON) == 1:
                 str = "RED and YELLOW"
                 fgd[conIdx] = WHITE
             else:
-                str = txt[conIdx]
+                # Check whose turn it is based on free tile player color
+                freeTilePlayerEnum = int(freeTile[0][PLAYER_])
+                currentColorEnum = tripToColEnum(fgd[conIdx])
+                if freeTilePlayerEnum == currentColorEnum:
+                    str = txt[conIdx] + "'s turn"
+                else:
+                    str = txt[conIdx]
             dict = formTextDict(conIdx, fgd[conIdx], BLUE, DOUBLEWIDTH, TILEHEIGHT/4, str)
             txDictToSock(CON[conIdx], dict)
 
@@ -558,6 +564,26 @@ def gridTileAction(sel, x, y):
                 sendTheDictToAllCONs(placedTile[otherIdx])
 
         sendTheDictToAllCONs(freeTile[0])
+
+        # Update turn labels after each move
+        fgd = []
+        fgd.append(RED)
+        fgd.append(YELLOW)
+        txt = ['RED PLAYER', 'YELLOW PLAYER', 'BOTH PLAYERS']
+        for conIdx in range(0, len(CON)):
+            if len(CON) == 1:
+                str = "RED and YELLOW"
+                fgd[conIdx] = WHITE
+            else:
+                # Check whose turn it is based on free tile player color enum
+                freeTilePlayerEnum = int(freeTile[0][PLAYER_])
+                currentColorEnum = tripToColEnum(fgd[conIdx])
+                if freeTilePlayerEnum == currentColorEnum:
+                    str = txt[conIdx] + "'s turn"
+                else:
+                    str = txt[conIdx]
+            dict = formTextDict(conIdx, fgd[conIdx], BLUE, DOUBLEWIDTH, TILEHEIGHT/4, str)
+            txDictToSock(CON[conIdx], dict)
 
         return PLAY_CODE
 #

@@ -1,7 +1,10 @@
 from noodling import *                            
+import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide" 
 import asyncio                                    
 import pygame
+import sys
+from tiles import create_tile_gif
 
 #
 sel = selectors.DefaultSelector()
@@ -42,6 +45,46 @@ def checkForMouseXY(clientId, freeTile, sock):
 #
 async def main():
     pygame.init()
+    
+    # Generate required GIFs if they don't exist
+    print("Generating required GIF files...")
+    # Side encoding: r4 (top, bit 0), r3 (right, bit 1), r2 (bottom, bit 2), r1 (left, bit 3)
+    # 'b' (blue) = bit=1, 'g' (green) = bit=0
+    # BBBG (0xE = 1110): r4='g', r3='b', r2='b', r1='b' -> bbbg
+    # GGGB (0x1 = 0001): r4='b', r3='g', r2='g', r1='g' -> gggb
+    # BBGG (0xC = 1100): r4='g', r3='g', r2='b', r1='b' -> bbgg
+    gif_configs = [
+        ('r', 'b', 'b', 'g', 'g'),  # BBGG-R: r1='b', r2='b', r3='g', r4='g'
+        ('y', 'b', 'b', 'g', 'g'),  # BBGG-Y
+        ('r', 'g', 'g', 'g', 'b'),  # GGGB-R: r1='g', r2='g', r3='g', r4='b'
+        ('y', 'g', 'g', 'g', 'b'),  # GGGB-Y
+        ('r', 'b', 'b', 'b', 'g'),  # BBBG-R: r1='b', r2='b', r3='b', r4='g'
+        ('y', 'b', 'b', 'b', 'g'),  # BBBG-Y
+    ]
+    
+    for config in gif_configs:
+        centerColor, r1, r2, r3, r4 = config
+        result = create_tile_gif(centerColor, r1, r2, r3, r4)
+        if result is not None:
+            print(f"Error creating GIF: {result}")
+    
+    print("GIF generation complete.")
+    
+    # Parse command line arguments for window positioning
+    window_x = 0
+    window_y = 0
+    if len(sys.argv) > 1:
+        try:
+            window_x = int(sys.argv[1])
+            if len(sys.argv) > 2:
+                window_y = int(sys.argv[2])
+        except ValueError:
+            window_x = 0
+            window_y = 0
+    
+    # Set window position using environment variable
+    os.environ['SDL_VIDEO_WINDOW_POS'] = f"{window_x},{window_y}"
+    
     surface = pygame.display.set_mode((GAMEMAXX, GAMEMAXY))
     pygame.display.set_caption("Client")
     pygame.display.update()
@@ -90,9 +133,21 @@ async def main():
             opcode = dict[OPCODE_]
             print(opcode)
             if opcode == TXT_CODE:
+                # Clear the area where text will be drawn to avoid artifacts
+                x = int(dict[X_])
+                y = int(dict[Y_])
+                points = int(dict[POINTS_])
+                # Create a much larger rectangle to clear (very generous to handle "'s turn" suffix)
+                # Use fixed size based on maximum expected text length
+                max_text_length = 20  # Maximum expected characters (e.g., "YELLOW PLAYER's turn")
+                text_width = max_text_length * points * 0.7  # Fixed generous width
+                text_height = points * 2.0  # Increased height multiplier
+                clear_rect = pygame.Rect(x - text_width/2, y - text_height/2, text_width, text_height)
+                pygame.draw.rect(surface, BLACK, clear_rect)
+                
                 txtToSurface(surface, dict[STR_], \
                              int(dict[X_]), int(dict[Y_]), \
-                             int(dict[FGD_]), int(dict[FGD_]), \
+                             int(dict[FGD_]), int(dict[BGD_]), \
                              dict[FONT_], int(dict[POINTS_]))
                 pygame.display.update()
             elif opcode == TILE_CODE:
@@ -135,11 +190,7 @@ async def main():
     sel.close()
     sys.exit()
 #
-#async def main():
-#    castlingClient()
-
 asyncio.run(main())
-#main()
 
 
 
