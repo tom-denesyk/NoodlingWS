@@ -541,7 +541,7 @@ def printStatusOnClient(surface):
 def gridTileAction(sel, x, y):
     print("x, y = ", x, y)
     gdIdx = getTileIdx(x, y)
-    if evalForGameOver(sel) == False and gdIdx != BADIDX:
+    if evalForGameOver(sel, conIdx) == False and gdIdx != BADIDX:
         if isLockedOut(gdIdx, colEnumToTrip(freeTile[0][PLAYER_])) == 0:
             obj1 = placedTile.pop(gdIdx)
             x = int(obj1[X_])
@@ -628,7 +628,7 @@ def evalForGameOverOnClient(surface):
     return gameOver
 
 #
-def evalForGameOver(sel):
+def evalForGameOver(sel, conIdx=0):
     txt = []
     activePlayer = 1
     inactivePlayer = 0
@@ -682,7 +682,7 @@ def play(sel, conIdx, x, y):
         print("REPLAY BOX!")
         #sendTheDictToAllCONs(formReplayDict())
         opcode = PLAY_CODE
-    elif evalForGameOver(sel) == False and isInFreeTile(x, y) == True:
+    elif evalForGameOver(sel, conIdx) == False and isInFreeTile(x, y) == True:
         print("Rotate free tile")
         rot = int(freeTile[0][ROT_])
         rot += 1

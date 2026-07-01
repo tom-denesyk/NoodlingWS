@@ -172,6 +172,10 @@ async def main():
                 pygame.display.update()
             elif opcode == CLIENT_ID_CODE:
                 clientId = dict
+                # Automatically trigger synchronization by sending a mouse event
+                # This will cause the server to send the current board state
+                sync_dict = formMouseDict(int(clientId[CONIDX_]), 0, 0)
+                txDictToSock(sock, sync_dict)
             elif opcode == QUIT_CODE:
                 loop = False
             #elif opcode == REPLAY_CODE:
